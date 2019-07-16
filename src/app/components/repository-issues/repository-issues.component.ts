@@ -39,8 +39,8 @@ export class RepositoryIssuesComponent implements OnInit, OnDestroy {
       this.repositoryName = params['repositoryName'];
       if (this.repositoryName) {
         this.repositoryService.getRepositoryIssues(this.repositoryName).subscribe((data: any) => {
-          if (data && typeof data.items !== 'undefined') {
-            this._issues = data.items;
+          if (data && typeof data !== 'undefined') {
+            this._issues = data;
             this.filteredIssues = this._issues;
             this.selectedIssueState = this.issueStates[0];
 
@@ -56,7 +56,6 @@ export class RepositoryIssuesComponent implements OnInit, OnDestroy {
   }
 
   stateChange(event: MatRadioChange) {
-    console.log(event.value.toLowerCase());
     const state = event.value.toLowerCase();
     if (state !== 'all') {
       this.filteredIssues = this._issues.filter((issue) => issue.state === state);

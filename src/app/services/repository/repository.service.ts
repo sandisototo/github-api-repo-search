@@ -31,8 +31,8 @@ export class RepositoryService {
     );
   }
 
-  getRepositoryIssues(repositoryName: string) {
-    return this.httpClient.get(`/search/issues?q=${repositoryName}`).pipe(
+  getRepositoryIssues(githubUrl: string) {
+    return this.httpClient.get(`/repos/${githubUrl}/issues?state=all`).pipe(
       map((body: any) => {
         this.setIssues(body);
         return body;

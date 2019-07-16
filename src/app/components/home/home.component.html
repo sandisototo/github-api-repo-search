@@ -41,7 +41,7 @@
       <br />
 
       <a mat-button href="{{repository.html_url}}" target="blank">View on Github</a>
-      <a mat-button [routerLink]="['/repository-issues',repository.name]" >View Issues</a>
+      <a mat-button [routerLink]="['/repository-issues',repository.full_name]" >View Issues</a>
     </mat-expansion-panel>
   </mat-accordion>
 </mat-card>
