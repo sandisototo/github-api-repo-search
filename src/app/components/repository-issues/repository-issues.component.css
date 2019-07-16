@@ -1,0 +1,16 @@
+.loading { 
+    padding-top: 10%; padding-left: 50%;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  .first-title {
+    font-size: 20px;
+    margin-bottom: auto;
+  }
+
+  .issue-list {
+    background: #fafafa; 
+    padding: 25px;
+  }

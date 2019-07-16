@@ -1,0 +1,28 @@
+<mat-card>
+  <a [routerLink]="['/home']"><mat-icon class="icon" aria-hidden="false" aria-label="Home icon">home</mat-icon>Home</a> 
+  <p class="first-title">Repository Issues for <b>"{{repositoryName}}"</b></p>
+  <mat-grid-list cols="2" *ngIf="filteredIssues; else loading" >
+    <app-piechart *ngIf="_issues.length" [pieChartLabels]="pieChartLabels" [pieChartData]="pieChartData" [pieChartType]="pieChartType"></app-piechart>
+    <mat-list class="issue-list"  *ngIf="_issues.length">
+      <label id="example-radio-group-label">Filter state: </label>
+      <mat-radio-group aria-labelledby="example-radio-group-label" [(ngModel)]="selectedIssueState">
+        <mat-radio-button class="example-radio-button" *ngFor="let state of issueStates" [value]="state"
+          (change)="stateChange($event)">
+          {{state}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <h3 mat-subheader>Issues</h3>
+      <mat-list-item *ngFor="let issue of filteredIssues">
+        <mat-icon mat-list-icon>error</mat-icon>
+        <h4 mat-line>{{issue.title || 'Missing title'}} </h4>
+        <p mat-line> {{issue.created_at}} </p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+      <p *ngIf="!filteredIssues.length">No <b>{{ selectedIssueState }} </b> issues found!</p>
+    </mat-list>
+    <p *ngIf="!_issues.length">No issues found!</p>
+  </mat-grid-list>
+</mat-card>
+<ng-template #loading>
+  <div class="loading">Loading...</div>
+</ng-template>
